@@ -203,6 +203,7 @@ jobs:
         shell: cmd
         run: |
           mkdir -p ~\artifact
+          cp %H%\build\%C%\%B%\upx\upx.exe ~\artifact\upx.exe
           cd %H%\build\%C%\%B%\upx
           set UPX=--no-color --no-progress
           .\upx.exe --version
@@ -211,12 +212,6 @@ jobs:
           .\upx.exe -l upx_packed.exe
           .\upx.exe -t upx_packed.exe
           .\upx_packed.exe --version
-          cp .\upx.exe ~\artifact
-
-      - name: 'Run test suite'
-        shell: cmd
-        run: |
-          bash ./.github/travis_testsuite_1.sh
 
       - name: 'Copy artifacts'
         run: echo 'aa'
