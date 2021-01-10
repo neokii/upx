@@ -202,6 +202,7 @@ jobs:
       - name: 'Basic tests'
         shell: cmd
         run: |
+          mkdir -p ~\artifact
           cd %H%\build\%C%\%B%\upx
           set UPX=--no-color --no-progress
           .\upx.exe --version
@@ -210,6 +211,7 @@ jobs:
           .\upx.exe -l upx_packed.exe
           .\upx.exe -t upx_packed.exe
           .\upx_packed.exe --version
+          cp .\upx.exe ~\artifact
 
       - name: 'Run test suite'
         shell: cmd
@@ -217,11 +219,10 @@ jobs:
           bash ./.github/travis_testsuite_1.sh
           
       - name: 'Copy artifacts'
-        run: | 
-          cp %H%\build\%C%\%B%\upx\upx.exe upx.exe
       - uses: actions/upload-artifact@v2
         with:
           name: upx
-          path: upx.exe
+          path: ~\artifact\upx.exe
+
 
 # vim:set ts=2 sw=2 et:
