@@ -217,7 +217,7 @@ jobs:
         shell: cmd
         run: |
           bash ./.github/travis_testsuite_1.sh
-          
+
       - name: 'Copy artifacts'
         run: echo 'aa'
       - uses: actions/upload-artifact@v2
