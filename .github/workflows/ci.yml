@@ -216,11 +216,12 @@ jobs:
         run: |
           bash ./.github/travis_testsuite_1.sh
           
-      - name: Copy artifacts
-        run: cp %H%\build\%C%\%B%\upx\upx.exe upx.exe
+      - name: 'Copy artifacts'
+        run: | 
+          cp %H%\build\%C%\%B%\upx\upx.exe upx.exe
       - uses: actions/upload-artifact@v2
         with:
-          name: upx.exe
+          name: upx
           path: upx.exe
 
 # vim:set ts=2 sw=2 et:
